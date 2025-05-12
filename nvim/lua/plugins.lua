@@ -22,12 +22,30 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 require("lazy").setup({
+    -- Essential plugins
+    "nvim-lua/plenary.nvim", -- Utility functions (dependency for many plugins)
 	{
 	"vhyrro/luarocks.nvim",
 	priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
 	config = true,
 	},
-	
+	 -- tree sitter	
+    {
+         "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function () 
+
+        local configs = require("nvim-treesitter.configs")
+
+        configs.setup({
+              ensure_installed = { "python", "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html" },
+              sync_install = false,
+              highlight = { enable = true },
+              indent = { enable = true },  
+            })
+        end
+    }, 
+    {
 	-- LSP manager
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
@@ -35,7 +53,7 @@ require("lazy").setup({
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
-	
+   }, 
 	-- blink.cmp for code completion
 	{
 	  'saghen/blink.cmp',
@@ -61,7 +79,7 @@ require("lazy").setup({
 		},
 
 		-- (Default) Only show the documentation popup when manually triggered
-		completion = { documentation = { auto_show = false } },
+		completion = { documentation = { auto_show = true } },
 
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
@@ -84,4 +102,36 @@ require("lazy").setup({
 	    "nvim-tree/nvim-tree.lua",
 	    dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
+    -- Fuzzy finder
+    {
+      "nvim-telescope/telescope.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" }
+    },
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = true
+        -- use opts = {} for passing setup options
+        -- this is equivalent to setup({}) function
+    },
+    {'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+
+        build = function() vim.fn["mkdp#util#install"]() end,
+    },
+    {
+      'rmagatti/auto-session',
+      lazy = false,
+
+      ---enables autocomplete for opts
+      ---@module "auto-session"
+      ---@type AutoSession.Config
+      opts = {
+        suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+        -- log_level = 'debug',
+      }
+    },
 })

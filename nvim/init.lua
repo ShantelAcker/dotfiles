@@ -5,5 +5,6 @@ vim.g.loaded_netrwPlugin = 1
 require("plugins")
 require("options")
 require("lsp")
+require("formatter")
 require("explorer")
 require("colorscheme")

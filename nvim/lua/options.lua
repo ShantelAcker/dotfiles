@@ -16,7 +16,7 @@ vim.opt.cursorline = true           -- highlight cursor line underneath the curs
 vim.opt.splitbelow = true           -- open new vertical split bottom
 vim.opt.splitright = true           -- open new horizontal splits right
 -- vim.opt.termguicolors = true        -- enabl 24-bit RGB color in the TUI
-vim.opt.showmode = false            -- we are experienced, wo don't need the "-- INSERT --" mode hint
+vim.opt.showmode = true
 
 -- Searching
 vim.opt.incsearch = true            -- search as characters are entered
@@ -32,3 +32,23 @@ require("bufferline").setup{}
 vim.keymap.set("n", "gs", function()
     require("telescope.builtin").lsp_definitions()
     end, { noremap = true, silent = true })
+
+-- diagnostics
+vim.diagnostic.config({
+    virtual_text = {
+        current_line = true,
+        severity = {
+            min = "HINT",
+            max = "WARN"
+        }
+    },
+    virtual_lines = {
+        current_line = true,
+        severity = {
+            min = "ERROR"
+        }
+    }
+})
+
+-- python
+vim.g.python_3_host_prog = "/home/shantel/miniconda3/envs/main_env/bin/python"

@@ -129,7 +129,7 @@ require("lazy").setup({
 	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = { "nvim-lua/plenary.nvim", "https://github.com/BurntSushi/ripgrep", "https://github.com/sharkdp/fd" },
 		opts = {
 			git = {
 				enable = true,

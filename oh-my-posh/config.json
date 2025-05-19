@@ -13,29 +13,29 @@
       "alignment": "left",
       "segments": [
         {
-          "type": "python",
-          "style": "diamond",
-          "leading_diamond": "",
-          "powerline_symbol": "",
-          "foreground": "p:text",
-          "background": "p:lavender",
-          "cache_duration": "12h0m0s",
-          "template": "{{ .Venv }}"
-        },
-        {
-          "background": "p:blue",
+          "background": "p:pink",
           "foreground": "p:wight",
           "style": "powerline",
+          "leading_powerline_symbol": "",
           "powerline_symbol": "",
           "template": " {{.Icon}} ",
           "type": "os"
         },
         {
+          "type": "python",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "p:text",
           "background": "p:blue",
+          "cache_duration": "12h0m0s",
+          "template": " ({{ .Venv }})"
+        },
+        {
+          "background": "p:lavender",
           "foreground": "p:text",
           "powerline_symbol": "",
           "style": "powerline",
-          "template": "{{ .UserName }}",
+          "template": " {{ .UserName }}",
           "type": "session"
         },
         {

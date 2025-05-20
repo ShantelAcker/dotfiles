@@ -16,7 +16,7 @@ vim.opt.cursorline = true -- highlight cursor line underneath the cursor horizon
 vim.opt.splitbelow = true -- open new vertical split bottom
 vim.opt.splitright = true -- open new horizontal splits right
 -- vim.opt.termguicolors = true        -- enabl 24-bit RGB color in the TUI
-vim.opt.showmode = true
+vim.opt.showmode = false
 
 -- Searching
 vim.opt.incsearch = true -- search as characters are entered
@@ -51,7 +51,11 @@ vim.diagnostic.config({
 })
 
 -- python
-vim.g.python_3_host_prog = "/home/shaun/miniconda3/envs/main_env/bin/python3"
+local user = os.getenv("USERNAME")
+vim.g.python_3_host_prog = "/home/" .. user .. "/miniconda3/envs/main_env/bin/python3"
 
 -- autosession
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- markdown preview
+vim.g.nvim_markdown_preview_format = "markdown"

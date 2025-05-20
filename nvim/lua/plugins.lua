@@ -66,16 +66,13 @@ require("lazy").setup({
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
+		"mfussenegger/nvim-lint",
+		"rshkarin/mason-nvim-lint",
+		"stevearc/conform.nvim",
+		"zapling/mason-conform.nvim",
 
 		-- automatically check for plugin updates
 		checker = { enabled = true },
-	},
-
-	-- formatter
-	{
-		"stevearc/conform.nvim",
-		"zapling/mason-conform.nvim",
-		opts = {},
 	},
 
 	-- blink.cmp for code completion
@@ -129,7 +126,11 @@ require("lazy").setup({
 	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "https://github.com/BurntSushi/ripgrep", "https://github.com/sharkdp/fd" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"https://github.com/BurntSushi/ripgrep",
+			"https://github.com/sharkdp/fd",
+		},
 		opts = {
 			git = {
 				enable = true,
@@ -164,15 +165,7 @@ require("lazy").setup({
 		},
 	},
 	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
-	{
-		"iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		ft = { "markdown" },
-
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-	},
+	{ "davidgranstrom/nvim-markdown-preview" },
 	{
 		"rmagatti/auto-session",
 		lazy = false,
@@ -184,5 +177,9 @@ require("lazy").setup({
 			suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
 			-- log_level = 'debug',
 		},
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 })

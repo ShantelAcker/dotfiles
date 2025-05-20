@@ -7,6 +7,8 @@ require("conform").setup({
 		javascript = { "eslint_d", "prettierd" },
 		typescript = { "eslint_d", "prettierd" },
 		json = { "fixjson" },
+		c = { "clangd " },
+		cpp = { "clang-format" },
 	},
 })
 
